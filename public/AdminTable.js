@@ -37,47 +37,45 @@ loadData()
       colPrice.appendChild(document.createTextNode(prj.Price))
       row.append(colPrice)
 
-       // Celda de imagen
-       const colImage = document.createElement('td');
-       const imgElement = document.createElement('img');
-       imgElement.src = prj.Image;
-       imgElement.alt = `Imagen de ${prj.Brand} ${prj.Model}`;
-       imgElement.style.width = '50px';  // Ajusta el tamaño según tus necesidades
-       colImage.appendChild(imgElement);
-       row.append(colImage);
+      // Celda de imagen
+      const colImage = document.createElement('td');
+      const imgElement = document.createElement('img');
+      imgElement.src = prj.Image;
+      imgElement.alt = `Imagen de ${prj.Brand} ${prj.Model}`;
+      imgElement.style.width = '50px';  // Ajusta el tamaño según tus necesidades
+      colImage.appendChild(imgElement);
+      row.append(colImage);
 
       const colStock = document.createElement('td')
       colStock.appendChild(document.createTextNode(prj.Price))
       row.append(colStock)
 
-           // Nueva celda para los botones de acción
-           const colActions = document.createElement('td');
+      // Nueva celda para los botones de acción
+      const colActions = document.createElement('td');
 
-           // Botón de editar
-           const editBtn = document.createElement('a');
-           editBtn.href = `/edit/${prj.id}`;  // Asumiendo que prj tiene un id
-           editBtn.className = 'btn btn-primary btn-sm';
-           editBtn.innerHTML = '<i class="fas fa-edit"></i>';
-           colActions.appendChild(editBtn);
-     
-           // Espacio entre botones (opcional)
-           colActions.appendChild(document.createTextNode(' '));
-     
-           // Botón de eliminar
-           const deleteBtn = document.createElement('a');
-           deleteBtn.href = `/delete/${prj.id}`;  // Asumiendo que prj tiene un id
-           deleteBtn.className = 'btn btn-danger btn-sm';
-           deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
-           colActions.appendChild(deleteBtn);
-     
-           // Agregar la celda de acciones a la fila
-           row.append(colActions);
-     
-    
-   
+      // Botón de editar
+      const editBtn = document.createElement('a');
+      editBtn.href = "#";
+      editBtn.className = 'btn btn-primary btn-sm edit-btn';  // Cambiado
+      editBtn.dataset.id = prj._id;  // Agregar el ID como atributo de datos
+      editBtn.innerHTML = '<i class="fas fa-edit"></i>';
+      colActions.appendChild(editBtn);
 
-     
-      
+      // Botón de eliminar
+      const deleteBtn = document.createElement('a');
+      deleteBtn.href = `/delete/${prj.id}`;  // Asumiendo que prj tiene un id
+      deleteBtn.className = 'btn btn-danger btn-sm';
+      deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+      colActions.appendChild(deleteBtn);
+
+      // Agregar la celda de acciones a la fila
+      row.append(colActions);
+
+
+
+
+
+
 
 
 
@@ -87,3 +85,12 @@ loadData()
     });
   })
   .catch(err => console.log(err))
+
+
+  document.querySelector("#tBody").addEventListener("click", function(e) {
+    if (e.target.closest(".edit-btn")) {
+      e.preventDefault();
+      const productId = e.target.closest(".edit-btn").dataset.id;
+      renderFormEDIT(productId);
+    }
+  });
