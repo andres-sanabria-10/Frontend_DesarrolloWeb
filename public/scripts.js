@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         // Credenciales inválidas, mostrar un mensaje de error
         console.log('Credenciales incorrectas');
-        alert('Error de credenciales');
+      
       }
     });
   
