@@ -16,6 +16,8 @@ app.get('/',(req,res)=>{
 })
 
 
+
+
 app.get('/IngresaAdmin', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'Admin.html'));
 });
