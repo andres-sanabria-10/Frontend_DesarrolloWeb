@@ -71,16 +71,6 @@ loadData()
       // Agregar la celda de acciones a la fila
       row.append(colActions);
 
-
-
-
-
-
-
-
-
-
-
       tBody.appendChild(row)
     });
   })
