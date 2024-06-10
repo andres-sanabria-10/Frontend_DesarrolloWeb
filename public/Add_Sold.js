@@ -12,14 +12,25 @@ function getSelectedProducts() {
   return selectedProducts;
 }
 
+// Función para mostrar un mensaje de error en pantalla
+function showErrorMessage(message) {
+  alert(message);
+}
+
 // Función para guardar la venta
 async function saveSale() {
-  const userId = '6664eaa6cbf04cf25b11a83b'; // Reemplaza con el id del usuario actual
+  const userId = sessionStorage.getItem('userId'); // Reemplaza con el id del usuario actual
+  if (!userId) {
+    showErrorMessage('No se encontró el ID del usuario. Por favor, inicie sesión nuevamente.');
+    return;
+  }
+  
   const shoes = getSelectedProducts().map(product => ({
     shoeId: product._id,
     quantity: parseInt(product.quantity, 10)
   }));
   console.log("Enviando datos:", { userId, shoes });
+
   try {
     const response = await fetch('https://apiteinda.onrender.com/sales', {
       method: 'POST',
@@ -35,7 +46,8 @@ async function saveSale() {
       // Aquí puedes agregar lógica adicional después de guardar la venta exitosamente
     } else {
       const errorData = await response.json();
-      console.error('Error al guardar la venta:', errorData);
+      console.error('Error al guardar la venta:', errorData.error);
+      showErrorMessage(errorData.error); // Mostrar mensaje de error en pantalla
     }
   } catch (error) {
     console.error('Error al guardar la venta:', error);
@@ -43,11 +55,14 @@ async function saveSale() {
       try {
         const errorData = await error.response.json();
         console.error('Error del servidor:', errorData);
+        showErrorMessage(errorData.error); // Mostrar mensaje de error en pantalla
       } catch (jsonError) {
         console.error('Error al analizar la respuesta del servidor:', jsonError);
+        showErrorMessage('Error al analizar la respuesta del servidor'); // Mostrar mensaje de error en pantalla
       }
     } else {
       console.error('Error de conexión:', error.message);
+      showErrorMessage('Error de conexión'); // Mostrar mensaje de error en pantalla
     }
   }
 }

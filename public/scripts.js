@@ -14,6 +14,9 @@ async function verifyCredentials(email, password) {
         } else if (user.role === 'Usuario') {
           // Redirigir a la página de Usuario
           window.location.href = '/IngresaUsuario';
+         
+          return { success: true, userId: user._id }; 
+       
         } else {
           return { success: false, message: 'Rol de usuario no válido' };
         }
@@ -43,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (result.success) {
         // Credenciales válidas, redirigir al usuario o mostrar un mensaje de éxito
         console.log('Inicio de sesión exitoso');
+        sessionStorage.setItem('userId', result.userId);
       } else {
         // Credenciales inválidas, mostrar un mensaje de error
         console.log('Credenciales incorrectas');
@@ -64,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
       if (result.success) {
         // Credenciales válidas, redirigir al usuario o mostrar un mensaje de éxito
+        sessionStorage.setItem('userId', result.userId);
         console.log('Inicio de sesión exitoso');
       } else {
         // Credenciales inválidas, mostrar un mensaje de error
