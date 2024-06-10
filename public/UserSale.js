@@ -47,7 +47,7 @@ loadDataCard()
             checkboxInput.id = `comprarCheckbox-${shoe.id}`;
             checkboxInput.dataset.target = `cantidadesDiv-${shoe.id}`;
             checkboxInput.name = "selectedProducts";
-            checkboxInput.value = shoe.id;
+            checkboxInput.value = shoe._id;
 
             const checkboxLabel = document.createElement("label");
             checkboxLabel.className = "form-check-label";

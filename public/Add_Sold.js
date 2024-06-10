@@ -15,8 +15,11 @@ function getSelectedProducts() {
 // Función para guardar la venta
 async function saveSale() {
   const userId = '6664eaa6cbf04cf25b11a83b'; // Reemplaza con el id del usuario actual
-  const shoes = getSelectedProducts();
-
+  const shoes = getSelectedProducts().map(product => ({
+    shoeId: product._id,
+    quantity: parseInt(product.quantity, 10)
+  }));
+  console.log("Enviando datos:", { userId, shoes });
   try {
     const response = await fetch('https://apiteinda.onrender.com/sales', {
       method: 'POST',
