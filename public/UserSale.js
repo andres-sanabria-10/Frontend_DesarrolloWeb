@@ -54,9 +54,32 @@ loadDataCard()
             checkboxLabel.htmlFor = `comprarCheckbox-${shoe.id}`;
             checkboxLabel.textContent = "Comprar";
 
+            const cantidadesDiv = document.createElement("div");
+            cantidadesDiv.id = `cantidadesDiv-${shoe.id}`;
+            cantidadesDiv.style.display = "none"; // Ocultar inicialmente
+
+            const decrementButton = document.createElement("button");
+            decrementButton.textContent = "-";
+            decrementButton.addEventListener("click", decrementarCantidad);
+
+            const cantidadInput = document.createElement("input");
+            cantidadInput.type = "number";
+            cantidadInput.value = "1";
+            cantidadInput.min = "1";
+            cantidadInput.max=shoe.Stock;
+           
+            const incrementButton = document.createElement("button");
+            incrementButton.textContent = "+";
+            incrementButton.addEventListener("click", incrementarCantidad);
+
+            cantidadesDiv.appendChild(decrementButton);
+            cantidadesDiv.appendChild(cantidadInput);
+            cantidadesDiv.appendChild(incrementButton);
+
             checkboxDiv.appendChild(checkboxInput);
             checkboxDiv.appendChild(checkboxLabel);
             cardFooter.appendChild(checkboxDiv);
+            cardFooter.appendChild(cantidadesDiv);
 
             cardElement.appendChild(cardHeader);
             cardElement.appendChild(imgElement);
@@ -64,6 +87,15 @@ loadDataCard()
             cardElement.appendChild(cardFooter);
             cardDiv.appendChild(cardElement);
             cardContainer.appendChild(cardDiv);
+
+            // Agregar evento al checkbox para mostrar/ocultar el div de cantidades
+            checkboxInput.addEventListener("change", function() {
+                if (this.checked) {
+                    cantidadesDiv.style.display = "block";
+                } else {
+                    cantidadesDiv.style.display = "none";
+                }
+            });
         });
     })
     .catch(err => console.log(err));
@@ -71,20 +103,34 @@ loadDataCard()
    // Obtener el botón "Guardar"
 var btnGuardar = document.getElementById('btnGuardar');
 
-// Agregar un evento clic al botón "Guardar"
-btnGuardar.addEventListener('click', function(event) {
-  event.preventDefault(); // Evitar envío del formulario
 
-  // Mostrar ventana de confirmación
-  var confirmar = confirm("¿Estás seguro de guardar esta venta?");
 
-  // Si el usuario confirma
-  if (confirmar) {
-    // Aquí puedes agregar el código para guardar la venta
-    console.log("Guardando venta...");
-    // ...
-  } else {
-    // Si el usuario cancela
-    console.log("Venta cancelada");
-  }
-});
+// Funciones para incrementar y decrementar la cantidad
+function incrementarCantidad(event) {
+    event.preventDefault(); // Evitar envío de formulario
+    const input = this.parentNode.querySelector("input");
+    const maxValue = parseInt(input.max);
+    const currentValue = parseInt(input.value);
+
+    if (currentValue < maxValue) {
+        input.value = currentValue + 1;
+    }
+}
+
+function decrementarCantidad(event) {
+    event.preventDefault(); // Evitar envío de formulario
+    const input = this.parentNode.querySelector("input");
+    if (input.value > input.min) {
+        input.value = parseInt(input.value) - 1;
+    }
+}
+
+
+
+
+
+
+
+
+
+

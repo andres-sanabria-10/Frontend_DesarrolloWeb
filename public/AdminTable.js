@@ -47,7 +47,7 @@ loadData()
       row.append(colImage);
 
       const colStock = document.createElement('td')
-      colStock.appendChild(document.createTextNode(prj.Price))
+      colStock.appendChild(document.createTextNode(prj.Stock))
       row.append(colStock)
 
       // Nueva celda para los botones de acción
