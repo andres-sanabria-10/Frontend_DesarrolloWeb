@@ -4,12 +4,14 @@ async function loadDataCard() {
     } catch (err) {
         return err;
     }
-    return result;
-}
+    //return result;
 
-loadDataCard()
-    .then(r => r.json())
-    .then(data => {
+    const data = await result.json();
+
+    // Llenar el filtro de marcas
+    fillBrandFilter(data);
+
+
         const cardContainer = document.getElementById("cardContainer");
         data.data.forEach(shoe => {
             const cardDiv = document.createElement("div");
@@ -97,8 +99,8 @@ loadDataCard()
                 }
             });
         });
-    })
-    .catch(err => console.log(err));
+    }
+    
 
    // Obtener el botón "Guardar"
 var btnGuardar = document.getElementById('btnGuardar');
@@ -126,11 +128,36 @@ function decrementarCantidad(event) {
 }
 
 
+// Función para llenar el filtro de marcas
+function fillBrandFilter(data) {
+    const uniqueBrands = new Set();
+    data.data.forEach(shoe => uniqueBrands.add(shoe.Brand));
+
+    const homeworldFilter = document.getElementById('homeworld-filter');
+    uniqueBrands.forEach(brand => {
+        const option = document.createElement('option');
+        option.text = brand;
+        option.value = brand;
+        homeworldFilter.add(option);
+    });
+}
+
+// Agregar un evento al filtro de marcas para filtrar las tarjetas de productos
+document.getElementById("homeworld-filter").addEventListener("change", function() {
+    const selectedBrand = this.value;
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        const brand = card.querySelector(".card-header").textContent.split('/')[0].trim();
+        if (selectedBrand === '' || brand === selectedBrand) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+});
 
 
 
-
-
-
-
-
+// Llamar a loadDataCard() para cargar los datos cuando se cargue la página
+loadDataCard();

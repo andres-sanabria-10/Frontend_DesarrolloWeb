@@ -40,47 +40,48 @@
                 <a class="nav-link" id="BuyForm" href="/IngresaUsuario">Comprar</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" id="">
+                <a class="nav-link" href="#" id="TableUserBuy">
                   Historial de compras
                 </a>
               </li>
-              
+
             </ul>
             <div class="dropdown  " style="margin-right: 10%;">
-              <a href="#" class="d-block link-White text-decoration-none dropdown-toggle"
-                  id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="https://github.com/mdo.png" alt="mdo" width="42" height="32"
-                      class="rounded-circle">
+              <a href="#" class="d-block link-White text-decoration-none dropdown-toggle" id="dropdownUser1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="mdo" width="42" height="32" class="rounded-circle">
               </a>
               <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
 
 
-                  <li><a class="dropdown-item" href="/">Sign out</a></li>
+                <li><a class="dropdown-item" href="/">Sign out</a></li>
               </ul>
-          </div>
+            </div>
           </div>
         </div>
       </nav>
     </div>
   </header>
+  <div id="modificar">
+    <form action="" id="add_sale">
+      <div class="container p-4">
 
-  <form action="" id="add_sale">
-    <div class="container p-4">
-      <div id="filter-area">
-        <label for="homeworld-filter">Marca:</label>
-        <select id="homeworld-filter">
+        <div id="filter-area">
+          <label for="homeworld-filter">Marca:</label>
+          <select id="homeworld-filter">
             <option value="">All</option>
-        </select>
-    
-    </div>
-      <div class="row" id="cardContainer">
-        <!-- Las cartas se agregarán aquí -->
+          </select>
+
+        </div>
+
+        <div class="row" id="cardContainer">
+          <!-- Las cartas se agregarán aquí -->
+        </div>
       </div>
-    </div>
 
-    <button type="button" class="btn btn-warning" id="btnGuardar" style="margin-left: 40px;">Comprar</button>
-  </form>
-
+      <button type="button" class="btn btn-warning" id="btnGuardar" style="margin-left: 40px;">Comprar</button>
+    </form>
+  </div>
 
   <footer class="pt-5 my-5 text-muted border-top">
     Created by the Bootstrap team &middot; &copy; 2021
@@ -88,6 +89,7 @@
 
   <script src="UserSale.js" type="text/javascript"></script>
   <script src="Add_Sold.js" type="text/javascript"></script>
+  <script src="User_Historial.js" type="text/javascript"></script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
