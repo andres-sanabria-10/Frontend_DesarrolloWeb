@@ -23,44 +23,48 @@ async function addProduct(productData) {
   async function renderForm() {
     const mainContainer = document.getElementById("mainContainer");
     mainContainer.innerHTML = `
-      <div class="card">
+      <center>
+      <div class="card" style="max-width:500px ;" >
         <div class="card-header">
           <h1>Agregar Nuevo Producto</h1>
         </div>
         <div class="card-body">
           <form id="addProductForm">
-            <div class="mb-1">
+            <div class="col-md-6">
               <label for="marca" class="form-label">Marca</label>
               <input type="text" class="form-control" id="marca" required>
             </div>
-            <div class="mb-5">
+            <div class="col-md-6">
               <label for="modelo" class="form-label">Modelo</label>
               <input type="text" class="form-control" id="modelo" required>
             </div>
-            <div class="mb-5">
+            <div class="col-md-6">
               <label for="color" class="form-label">Color</label>
               <input type="text" class="form-control" id="color" required>
             </div>
-            <div class="mb-3">
+            <div class="col-md-6">
               <label for="talla" class="form-label">Talla</label>
               <input type="number" class="form-control" id="talla" required>
             </div>
-            <div class="mb-3">
+            <div class="col-md-6">
               <label for="precio" class="form-label">Precio</label>
               <input type="number" step="0.01" class="form-control" id="precio" required>
             </div>
-            <div class="mb-3">
+            <div class="col-md-6">
               <label for="stock" class="form-label">Stock</label>
               <input type="number" class="form-control" id="stock" required>
             </div>
-            <div class="mb-3">
+            <div class="col-md-6">
               <label for="imagen" class="form-label">URL de la Imagen</label>
               <input type="url" class="form-control" id="imagen" required>
             </div>
+            <br>
             <button type="submit" class="btn btn-primary">Agregar Producto</button>
           </form>
         </div>
       </div>
+     </center>
+     
     `;
   
     document.getElementById("addProductForm").addEventListener("submit", async (e) => {

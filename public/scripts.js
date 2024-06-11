@@ -11,6 +11,7 @@ async function verifyCredentials(email, password) {
         if (user.role === 'Administrador') {
           // Redirigir a la página de Administrador
           window.location.href = '/IngresaAdmin';
+          return { success: true, userId: user._id }; // Devolver userId para Administrador
         } else if (user.role === 'Usuario') {
           // Redirigir a la página de Usuario
           window.location.href = '/IngresaUsuario';
