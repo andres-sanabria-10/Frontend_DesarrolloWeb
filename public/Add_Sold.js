@@ -43,6 +43,7 @@ async function saveSale() {
     if (response.ok) {
       const data = await response.json();
       console.log('Venta guardada:', data);
+      
       // Aquí puedes agregar lógica adicional después de guardar la venta exitosamente
     } else {
       const errorData = await response.json();
@@ -78,8 +79,10 @@ btnGuardar.addEventListener('click', function(event) {
   // Si el usuario confirma
   if (confirmar) {
     saveSale(); // Llamar a la función para guardar la venta
+    document.getElementById("addUserForm").reset(); 
   } else {
     // Si el usuario cancela
     console.log("Venta cancelada");
   }
 });
+
