@@ -50,6 +50,7 @@ async function updateProduct(productData) {
     const mainContainer = document.getElementById("mainContainer");
     mainContainer.innerHTML = `
       <br>
+      <center>
       <div class="card border-success" style="width: 48rem;">
         <div class="card-body">
           <h5 class="card-title">Modificar Zapato </h5>
@@ -88,6 +89,7 @@ async function updateProduct(productData) {
           </form>
         </div>
       </div>
+      </center>
     `;
     const editProductForm = document.getElementById("editProductForm");
     editProductForm.addEventListener("submit", async (event) => {

@@ -61,13 +61,7 @@ loadData()
       editBtn.innerHTML = '<i class="fas fa-edit"></i>';
       colActions.appendChild(editBtn);
 
-      // Botón de eliminar
-      const deleteBtn = document.createElement('a');
-      deleteBtn.href = `/delete/${prj.id}`;  // Asumiendo que prj tiene un id
-      deleteBtn.className = 'btn btn-danger btn-sm';
-      deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
-      colActions.appendChild(deleteBtn);
-
+    
       // Agregar la celda de acciones a la fila
       row.append(colActions);
 
