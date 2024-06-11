@@ -17,6 +17,7 @@ function showErrorMessage(message) {
   alert(message);
 }
 
+
 // Función para guardar la venta
 async function saveSale() {
   const userId = sessionStorage.getItem('userId'); // Reemplaza con el id del usuario actual
@@ -43,6 +44,7 @@ async function saveSale() {
     if (response.ok) {
       const data = await response.json();
       console.log('Venta guardada:', data);
+      window.location.href = '/IngresaUsuario';
       
       // Aquí puedes agregar lógica adicional después de guardar la venta exitosamente
     } else {
@@ -79,7 +81,10 @@ btnGuardar.addEventListener('click', function(event) {
   // Si el usuario confirma
   if (confirmar) {
     saveSale(); // Llamar a la función para guardar la venta
-    document.getElementById("addUserForm").reset(); 
+    // Redirigir a la misma página después de guardar exitosamente
+    
+   
+    
   } else {
     // Si el usuario cancela
     console.log("Venta cancelada");
