@@ -52,8 +52,6 @@ async function Table() {
       const response = await result.json();
       const users = response.data;
   
-  
-  
       return users;
     } catch (err) {
       console.error("Error obteniendo el nombre del usuario:", err);
@@ -87,7 +85,7 @@ async function Table() {
     }
   }
   
-  async function renderTable(productId) {
+  async function renderTable() {
     const mainContainer = document.getElementById("modificar");
     mainContainer.innerHTML = `
         <br>
@@ -115,9 +113,14 @@ async function Table() {
         </div>
       `;
   
+    const userId = sessionStorage.getItem('userId'); // Obtener el ID del usuario que inició sesión
+  
     // Obtener los datos del servidor
     const data = await Table();
     const shoes = await getShoes();
+  
+    // Filtrar los datos para mostrar solo las ventas del usuario que inició sesión
+    const userSales = data.filter(sale => sale.userId === userId);
   
     // Crear un objeto que mapee los IDs de los zapatos a sus modelos y marcas
     const shoeMap = shoes.reduce((acc, shoe) => {
@@ -127,17 +130,17 @@ async function Table() {
   
     // Crear las filas de la tabla
     const tBody = document.getElementById("tBody");
-    for (const sale of data) {
+    for (const sale of userSales) {
       const row = document.createElement("tr");
   
       row.innerHTML = `
         <td>${sale.userName}</td>
         <td>${sale.Date}</td>
         <td>
-         ${sale.shoes.map((shoe) => {
-          const { Model, Brand } = shoeMap[shoe.shoeId._id] || {};
-          return `<div> Modelo: ${Model }  Marca: ${ Brand}</div>`;
-        }).join('')}
+          ${sale.shoes.map((shoe) => {
+            const { Model, Brand } = shoeMap[shoe.shoeId._id] || {};
+            return `<div>Modelo: ${Model} Marca: ${Brand}</div>`;
+          }).join('')}
         </td>
         <td>
           ${sale.shoes.map((shoe) => `<div>${shoe.quantity}</div>`).join('')}
@@ -153,3 +156,4 @@ async function Table() {
     e.preventDefault();
     renderTable();
   });
+  
